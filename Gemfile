@@ -60,3 +60,5 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem "react_on_rails", "12.0.0" # Update to the current version
 gem "webpacker", "~> 5"
 gem 'mini_racer', platforms: :ruby
+
+gem "aws-sdk-s3", "~> 1.42"
