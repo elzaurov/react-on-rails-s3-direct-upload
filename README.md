@@ -26,6 +26,8 @@ Copy the .env.sample file to .env and add the AWS S3 credentials.
 ```ruby
 cp .env.sample .env
 ```
+
+You should change the region in the `/config/initializers/aws.rb` into the region of your S3 bucket.
  
 We use foreman to run the website.
 - Rails Seraver
