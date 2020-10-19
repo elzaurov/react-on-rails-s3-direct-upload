@@ -1,24 +1,39 @@
-# README
+# React on Rails S3 Direct Upload
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic React on Rails App for uploading images to AWS S3 bucket directly from frontend.
 
-Things you may want to cover:
+We use `react-on-rails` gem for React frontend and use `aws-sdk-s3` gem for uploading files to AWS S3 bucket.
 
-* Ruby version
+## Project setup
+ ### Ruby on Rails
+Perform `bundle install` to install Ruby on Rails gem.
+### ReactJS 
+Run `yarn install` or `yarn` to install ReactJS frontend dependencies.
 
-* System dependencies
+### Database
+Create database by running below command.
+```ruby
+bundle exec rails db:create
+```
+Run database migration.
+````ruby
+bundle exec rails db:migrate db:seed
+````
 
-* Configuration
 
-* Database creation
+## How to run
+Copy the .env.sample file to .env and add the AWS S3 credentials.
+```ruby
+cp .env.sample .env
+```
+ 
+We use foreman to run the website.
+- Rails Seraver
+- Webpack server
 
-* Database initialization
+Run the below command.
+```ruby
+foreman start -f Procfile.dev
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Visit http://localhost:3000
