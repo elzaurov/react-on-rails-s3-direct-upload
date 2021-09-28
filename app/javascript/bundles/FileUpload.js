@@ -1,36 +1,34 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-export default class FileUpload extends React.Component{
+export default class FileUpload extends React.Component {
   state = {
     loading: false,
-    url: ''
+    url: "",
   };
 
-  handleUpload = async e => {
+  handleUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     this.setState({ loading: true });
 
-    const payload = await fetch(`/api/v1/upload/direct_post`).then(res =>
+    const payload = await fetch(`/api/v1/upload/direct_post`).then((res) =>
       res.json()
     );
-
-    
 
     const url = payload.url;
     const formData = new FormData();
 
-    Object.keys(payload.fields).forEach(key =>
+    Object.keys(payload.fields).forEach((key) =>
       formData.append(key, payload.fields[key])
     );
-    formData.append('file', file);
+    formData.append("file", file);
 
     const xml = await fetch(url, {
-      method: 'POST',
-      body: formData
-    }).then(res => res.text());
+      method: "POST",
+      body: formData,
+    }).then((res) => res.text());
 
     // axios.post(url, formData, {
     //     headers: {
@@ -55,12 +53,12 @@ export default class FileUpload extends React.Component{
     //   })
 
     const uploadUrl = new DOMParser()
-      .parseFromString(xml, 'application/xml')
-      .getElementsByTagName('Location')[0].textContent;
+      .parseFromString(xml, "application/xml")
+      .getElementsByTagName("Location")[0].textContent;
 
     this.setState({
       loading: false,
-      url: uploadUrl
+      url: uploadUrl,
     });
   };
 
@@ -72,7 +70,7 @@ export default class FileUpload extends React.Component{
             <img
               src={this.state.url}
               alt=""
-              style={{ width: '200px', height: '200px' }}
+              style={{ width: "200px", height: "200px" }}
             />
           ) : (
             <h4>Select Image</h4>
@@ -82,7 +80,7 @@ export default class FileUpload extends React.Component{
         <input
           type="file"
           hidden
-          ref={el => (this.img = el)}
+          ref={(el) => (this.img = el)}
           onChange={this.handleUpload}
         />
         <button onClick={() => this.img.click()}>Choose File</button>
